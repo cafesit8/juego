@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { question } from "../data/data";
+import { Options } from "./Options";
+import { Score } from "./Score";
 
 export function Questions() {
   const [points, setPoints] = useState(0);
@@ -17,16 +19,16 @@ export function Questions() {
 
   return (
     <div className="m-auto p-5 rounded-lg bg-[#7dd52d] flex flex-col justify-center items-center text-green-900 w-[500px] max-[550px]:w-[90%]">
-      {position > 6 ? (
-        <h1 className="text-[20px] text-center font-bold">Tu puntaje es: {points}</h1>
+      {position > 9 ? (
+        <Score points={points} />
       ) : (
         <>
           <h3 className="text-center font-bold text-[25px] max-[400px]:text-[20px]">{quiz.question}</h3>
           <div className="w-full flex flex-col items-center gap-3 py-3">
-            <p className="bg-[#537732] text-white w-full text-center rounded-md py-2 cursor-pointer" onClick={() => add(quiz.option1, quiz.answer)}>{quiz.option1}</p>
-            <p className="bg-[#537732] text-white w-full text-center rounded-md py-2 cursor-pointer" onClick={() => add(quiz.option2, quiz.answer)}>{quiz.option2}</p>
-            <p className="bg-[#537732] text-white w-full text-center rounded-md py-2 cursor-pointer" onClick={() => add(quiz.option3, quiz.answer)}>{quiz.option3}</p>
-            <p className="bg-[#537732] text-white w-full text-center rounded-md py-2 cursor-pointer" onClick={() => add(quiz.option4, quiz.answer)}>{quiz.option4}</p>
+            <Options add={add} option={quiz.option1} answer={quiz.answer}/>
+            <Options add={add} option={quiz.option2} answer={quiz.answer}/>
+            <Options add={add} option={quiz.option3} answer={quiz.answer}/>
+            <Options add={add} option={quiz.option4} answer={quiz.answer}/>
           </div>
         </>
       )}
